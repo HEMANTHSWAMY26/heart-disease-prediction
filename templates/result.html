@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Heart Disease Prediction</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #1a1a1a;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: #ff3333;
+}
+
+h2 {
+  color: #ff3333;
+  text-align: center;
+}
+
+.result-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.heart {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  margin: 20px auto;
+  transform: rotate(-45deg);
+  animation: beat 1s infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart::before {
+  top: -50px;
+  left: 0;
+}
+
+.heart::after {
+  left: 50px;
+  top: 0;
+}
+
+@keyframes beat {
+  0%, 20%, 50%, 80%, 100% {
+    transform: scale(1) rotate(-45deg);
+  }
+  40% {
+    transform: scale(1.1) rotate(-45deg);
+  }
+  60% {
+    transform: scale(0.9) rotate(-45deg);
+  }
+}
+
+@keyframes colorChangeHeartDisease {
+  0%, 100% {
+    background-color: red;
+  }
+  50% {
+    background-color: orange;
+  }
+}
+
+@keyframes colorChangeNoHeartDisease {
+  0%, 100% {
+    background-color: blue;
+  }
+  50% {
+    background-color: red;
+  }
+}
+
+.heart.heart-disease {
+  animation: beat 1s infinite, colorChangeHeartDisease 1s infinite;
+}
+
+.heart.no-heart-disease {
+  animation: beat 1s infinite, colorChangeNoHeartDisease 1s infinite;
+}
+
+</style>
+</head>
+<body>
+
+  <div class="navbar">
+    <a href="/">PROJECT</a>
+    <a href="https://github.com/HEMANTHSWAMY26/HEMANTHSWAMY26">Github</a> 
+  </div>
+  
+  <h2><a href = '/'> <p>Heart Disease Prediction</p></a></h2>
+   
+  <div class="result-container">
+    <h2>Results:</h2>
+ 
+    {% if prediction == 1 %}
+      <h2 style="color:red;">Sorry to say, chances of having Heart disease is more, please consult a Doctor.</h2>
+      <div class="heart heart-disease"></div>
+    {% elif prediction == 0 %}
+      <h2 style="color:blue;">No Worries!!! You don't have Heart disease.</h2>
+      <div class="heart no-heart-disease"></div>
+    {% endif %}
+  </div>
+
+</body>
+</html>
